@@ -1,5 +1,6 @@
 package com.example.joonas.ht;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -31,6 +32,16 @@ public class User {
         return accounts;
     }
 
+    public ArrayList<String> getCreditAccounts() {
+        ArrayList<String> taulukko = new ArrayList<String>();
+        for (int i=0; i<accounts.size(); i++) {
+            if ( accounts.get(i) instanceof CreditAccount ) {
+                taulukko.add(accounts.get(i).getId());
+            }
+        }
+        return taulukko;
+    }
+
 
     public Account getAccount(String ID) {
         for (int i=0; i<accounts.size(); i++) {
@@ -59,11 +70,25 @@ public class User {
         for (int i=0;i<accounts.size();i++) {
             System.out.println(accounts.get(i).id);
             System.out.println(accounts.get(i).balance);
+            for (int j=0; j<accounts.get(i).getCards().size(); j++) {
+                Card kortti = accounts.get(i).getCards().get(j);
+                System.out.println(j +":s kortti.");
+                System.out.println(kortti.getCardId());
+                System.out.println(kortti.getType());
+            }
         }
     }
 
     public int getAccountsAmount() {
         return accounts.size();
+    }
+
+    public int getCardsAmount() {
+        int amount = 0;
+        for (int i=0; i<accounts.size(); i++) {
+            amount = amount + accounts.get(i).getCards().size();
+        }
+        return amount;
     }
 
 

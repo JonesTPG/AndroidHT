@@ -31,6 +31,7 @@ public class UserMain extends AppCompatActivity
 
     TextView curUserName;
     TextView accountAmount;
+    TextView cardAmount;
 
 
     @Override
@@ -68,6 +69,9 @@ public class UserMain extends AppCompatActivity
 
         accountAmount = findViewById(R.id.accountAmount);
         accountAmount.setText(Integer.toString(curUser.getAccountsAmount()));
+
+        cardAmount = findViewById(R.id.cardAmount);
+        cardAmount.setText(Integer.toString(curUser.getCardsAmount()));
 
     }
 

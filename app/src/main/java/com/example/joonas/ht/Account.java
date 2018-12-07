@@ -96,6 +96,14 @@ class CreditAccount extends Account {
             this.balance = newBalance;
         }
     }
+
+    public void addCard(Card card) {
+        cards.add(card);
+    }
+
+    public ArrayList<Card> getAccountCards() {
+        return cards;
+    }
 }
 
 

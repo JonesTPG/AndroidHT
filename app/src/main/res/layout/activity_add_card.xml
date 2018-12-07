@@ -14,7 +14,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="405dp">
+        android:layout_height="380dp">
         <LinearLayout
             android:background="@drawable/gradientbackground"
             android:layout_width="match_parent"
@@ -59,6 +59,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -66,10 +67,32 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="Tili, johon kortti liitetään:"
+                android:textStyle="bold"
+                android:textSize="24dp"/>
+           <Spinner
+               android:id="@+id/accountSpinner"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:spinnerMode="dropdown"
+               >
+
+           </Spinner>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="Kortin numero:"
                 android:textStyle="bold"
                 android:textSize="24dp"/>
             <EditText
+                android:id="@+id/cardId"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:maxLines="1"
@@ -89,6 +112,7 @@
                 android:textStyle="bold"
                 android:textSize="24dp"/>
             <EditText
+                android:id="@+id/withdrawlimit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:maxLines="1"
@@ -108,6 +132,7 @@
                 android:textStyle="bold"
                 android:textSize="24dp"/>
             <EditText
+                android:id="@+id/amountlimit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:maxLines="1"
@@ -129,16 +154,19 @@
                 android:textSize="24dp"/>
 
             <RadioGroup
+                android:id="@+id/cardType"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
                 <RadioButton
+                    android:id="@+id/physical"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Vain fyysinen osto"/>
 
 
                 <RadioButton
+                    android:id="@+id/online"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Myös verkko-ostot"/>
@@ -156,6 +184,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Lisää kortti"
+        android:onClick="validateCardandAdd"
         />
 
 
