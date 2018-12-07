@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/add_item"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="Lisää tili" />
+
+        <item
+            android:id="@+id/add_card"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="Lisää kortti" />
+
+        <item
+            android:id="@+id/show_events"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="Tilitapahtumat" />
+        <item
+            android:id="@+id/manage_items"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Muokkaa tilejä" />
+        <item
+            android:id="@+id/manage_profile"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Muokkaa profiilia" />
+    </group>
+
+    <item android:title="Maksutapahtumat">
+        <menu>
+            <item
+                android:id="@+id/move_own"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Tilisiirto omalle tilille" />
+            <item
+                android:id="@+id/move_other"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Tilisiirto ulkopuoliselle" />
+        </menu>
+    </item>
+
+</menu>
