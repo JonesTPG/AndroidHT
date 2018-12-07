@@ -7,6 +7,9 @@ public class User {
 
     String userName;
     String email;
+
+
+
     ArrayList<Account> accounts;
     HashMap<String, String> settings;
 
@@ -23,6 +26,11 @@ public class User {
     public void addAccount(Account newAccount) {
         accounts.add(newAccount);
     }
+
+    public ArrayList<Account> getAccounts() {
+        return accounts;
+    }
+
 
     public Account getAccount(String ID) {
         for (int i=0; i<accounts.size(); i++) {

@@ -121,6 +121,9 @@ public class UserMain extends AppCompatActivity
 
         } else if (id == R.id.manage_items) {
 
+            startActivity(new Intent(UserMain.this, EditAccounts.class));
+
+
         } else if (id == R.id.manage_profile) {
 
         } else if (id == R.id.move_own) {

@@ -2,7 +2,9 @@ package com.example.joonas.ht;
 
 import java.util.Date;
 
+
 public class Event {
+
 
     Date date;
     String type;
