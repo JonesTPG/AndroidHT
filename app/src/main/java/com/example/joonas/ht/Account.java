@@ -12,6 +12,7 @@ public abstract class Account {
 
 
     ArrayList<Event> events = new ArrayList<Event>();
+    ArrayList<Card> cars = new ArrayList<Card>();
 
 
 

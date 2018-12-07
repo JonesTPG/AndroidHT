@@ -17,18 +17,19 @@
         <activity
             android:name=".UserMain"
             android:label="@string/title_activity_user_main"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".AddAccount" />
+        <activity android:name=".AddCard" />
+        <activity
+            android:name=".LoginActivity"
+            android:label="Verkkopankki">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AddAccount" />
-        <activity android:name=".AddCard" />
-        <activity
-            android:name=".LoginActivity"
-            android:label="@string/title_activity_login"></activity>
+        <activity android:name=".EditAccounts"></activity>
     </application>
 
 </manifest>

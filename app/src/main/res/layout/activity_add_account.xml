@@ -71,6 +71,7 @@
             android:textStyle="bold"
             android:textSize="24dp"/>
         <EditText
+            android:id="@+id/accountId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:maxLines="1"
@@ -92,16 +93,19 @@
             android:textSize="24dp"/>
 
         <RadioGroup
+            android:id="@+id/accountType"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
             <RadioButton
+                android:id="@+id/savingAccount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Säästötili"/>
 
 
             <RadioButton
+                android:id="@+id/creditAccount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Käyttötili"/>
@@ -119,6 +123,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Lisää tili"
+        android:onClick="addAccount"
         />
 
 

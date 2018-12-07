@@ -13,6 +13,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
+import android.widget.TextView;
 
 
 import java.util.HashMap;
@@ -23,9 +25,12 @@ import java.util.HashMap;
 public class UserMain extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    User curUser = new User("test");
-    HashMap<String, Object> currentUserInfo = curUser.getInfo();
 
+    User curUser = Bank.getUser(Current.currentUser);
+
+
+    TextView curUserName;
+    TextView accountAmount;
 
 
     @Override
@@ -56,7 +61,13 @@ public class UserMain extends AppCompatActivity
         //TextView userNameView = findViewById(R.id.userNameText);
         //userNameView.setText(currentUserInfo.get("username").toString());
 
+        curUserName = (TextView) findViewById(R.id.username);
+        curUserName.setText(Current.currentUser);
 
+        curUser.printInfo();
+
+        accountAmount = findViewById(R.id.accountAmount);
+        accountAmount.setText(Integer.toString(curUser.getAccountsAmount()));
 
     }
 

@@ -16,6 +16,8 @@ public class User {
         this.email = "example@example.fi";
         this.accounts = new ArrayList();
         this.settings = new HashMap<String, String>();
+
+
     }
 
     public void addAccount(Account newAccount) {
@@ -40,6 +42,20 @@ public class User {
         info.put("settings", this.settings);
 
         return info;
+    }
+
+
+    public void printInfo() {
+        System.out.println(this.userName);
+        System.out.println(this.email);
+        for (int i=0;i<accounts.size();i++) {
+            System.out.println(accounts.get(i).id);
+            System.out.println(accounts.get(i).balance);
+        }
+    }
+
+    public int getAccountsAmount() {
+        return accounts.size();
     }
 
 
