@@ -17,6 +17,13 @@ public abstract class Account {
     ArrayList<Card> cards = new ArrayList<Card>();
 
 
+    public void setCanBeUsed(boolean canBeUsed) {
+        this.canBeUsed = canBeUsed;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 
     public int getBalance() {
         return balance;
@@ -46,18 +53,24 @@ public abstract class Account {
         return type;
     }
 
-    public void withdDraw(int amount) {
+    public boolean withdDraw(int amount) {
         int newBalance = this.balance-amount;
         if ( newBalance < 0 ) {
-            return;
+            return false;
         }
         else {
             this.balance = newBalance;
+            return true;
         }
     }
 
     public void deposit(int amount) {
+
         this.balance = this.balance+amount;
+    }
+
+    public void addEvent(Event event) {
+        events.add(event);
     }
 
 
@@ -84,7 +97,7 @@ class CreditAccount extends Account {
         this.id = accountId;
         this.creditLimit = creditLimit;
         this.canBeUsed = true;
-        this.type = "luottotili";
+        this.type = "käyttötili";
     }
 
     public void withDraw(int amount) {

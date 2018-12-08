@@ -35,6 +35,12 @@
 
     <item android:title="Maksutapahtumat">
         <menu>
+
+            <item
+                android:id="@+id/deposit"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Lisää rahaa tilille" />
+
             <item
                 android:id="@+id/move_own"
                 android:icon="@drawable/ic_menu_share"

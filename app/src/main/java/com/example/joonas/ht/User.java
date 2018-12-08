@@ -64,6 +64,16 @@ public class User {
         return accounts;
     }
 
+    public ArrayList<String> getAccountNames() {
+        ArrayList<String> accountNames = new ArrayList<String>();
+
+        for (int i=0; i<accounts.size(); i++) {
+            accountNames.add(accounts.get(i).getId());
+        }
+
+        return accountNames;
+    }
+
     public ArrayList<String> getCreditAccounts() {
         ArrayList<String> taulukko = new ArrayList<String>();
         for (int i=0; i<accounts.size(); i++) {
@@ -102,11 +112,23 @@ public class User {
         for (int i=0;i<accounts.size();i++) {
             System.out.println(accounts.get(i).id);
             System.out.println(accounts.get(i).balance);
+            System.out.println(accounts.get(i).canBeUsed);
+            System.out.println(accounts.get(i).type);
             for (int j=0; j<accounts.get(i).getCards().size(); j++) {
                 Card kortti = accounts.get(i).getCards().get(j);
                 System.out.println(j +":s kortti.");
                 System.out.println(kortti.getCardId());
                 System.out.println(kortti.getType());
+            }
+
+            for (int j=0; j<accounts.get(i).getEvents().size(); j++) {
+                Event event = accounts.get(i).getEvents().get(j);
+                System.out.println(j+":s tilitapahtuma.");
+                System.out.println(event.getDate());
+                System.out.println(event.getType());
+                System.out.println(event.getFrom());
+                System.out.println(event.getTo());
+                System.out.println(event.getAmount());
             }
         }
     }

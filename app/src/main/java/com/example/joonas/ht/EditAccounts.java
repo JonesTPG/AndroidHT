@@ -17,7 +17,7 @@ public class EditAccounts extends AppCompatActivity {
     ArrayList<Account> accountList;
 
     RecyclerView recyclerView;
-    static String toBeEdited;
+
 
 
     @Override

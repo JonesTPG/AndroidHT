@@ -20,5 +20,23 @@ public class Event {
         this.amount = amount;
     }
 
+    public Date getDate() {
+        return date;
+    }
 
+    public String getType() {
+        return type;
+    }
+
+    public String getFrom() {
+        return from;
+    }
+
+    public String getTo() {
+        return to;
+    }
+
+    public int getAmount() {
+        return amount;
+    }
 }

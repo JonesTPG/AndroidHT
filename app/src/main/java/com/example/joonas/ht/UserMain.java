@@ -131,6 +131,8 @@ public class UserMain extends AppCompatActivity
 
         else if (id == R.id.show_events) {
 
+            startActivity(new Intent(UserMain.this, ShowEvents.class));
+
         } else if (id == R.id.manage_items) {
 
             startActivity(new Intent(UserMain.this, EditAccounts.class));
@@ -150,7 +152,15 @@ public class UserMain extends AppCompatActivity
             startActivity(new Intent(UserMain.this, EditProfile.class));
 
 
-        } else if (id == R.id.move_own) {
+        }
+
+        else if (id == R.id.deposit) {
+            startActivity(new Intent(UserMain.this, Deposit.class));
+        }
+
+
+
+        else if (id == R.id.move_own) {
 
         } else if (id == R.id.move_other) {
 
