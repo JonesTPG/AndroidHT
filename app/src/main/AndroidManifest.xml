@@ -17,7 +17,7 @@
         <activity
             android:name=".UserMain"
             android:label="@string/title_activity_user_main"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".AddAccount" />
         <activity android:name=".AddCard" />
         <activity
@@ -29,7 +29,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".EditAccounts"></activity>
+        <activity android:name=".EditAccounts" />
+        <activity android:name=".EditCards"></activity>
     </application>
 
 </manifest>

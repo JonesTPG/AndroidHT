@@ -128,7 +128,16 @@ public class UserMain extends AppCompatActivity
             startActivity(new Intent(UserMain.this, EditAccounts.class));
 
 
-        } else if (id == R.id.manage_profile) {
+        }
+
+        else if (id == R.id.manage_cards) {
+
+            startActivity(new Intent(UserMain.this, EditCards.class));
+
+
+        }
+
+        else if (id == R.id.manage_profile) {
 
         } else if (id == R.id.move_own) {
 

@@ -22,6 +22,11 @@
             android:id="@+id/manage_items"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="Muokkaa tilejä" />
+
+        <item
+            android:id="@+id/manage_cards"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Muokkaa kortteja" />
         <item
             android:id="@+id/manage_profile"
             android:icon="@drawable/ic_menu_manage"

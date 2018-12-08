@@ -91,5 +91,15 @@ public class User {
         return amount;
     }
 
+    public ArrayList<Card> getCards() {
+        ArrayList<Card> cards = new ArrayList<Card>();
+        for (int i=0; i<accounts.size(); i++) {
+            for (int j=0; j<accounts.get(i).getCards().size(); j++) {
+                cards.add(accounts.get(i).getCards().get(j));
+            }
+        }
+        return cards;
+    }
+
 
 }
