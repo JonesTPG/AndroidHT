@@ -8,6 +8,8 @@ public class User {
 
     String userName;
     String email;
+    String address;
+    String phone;
 
 
 
@@ -17,11 +19,41 @@ public class User {
 
     public User(String userName) {
         this.userName = userName;
-        this.email = "example@example.fi";
+        this.email = "ei määritetty";
+        this.address = "ei määritetty";
+        this.phone = "ei määritetty";
         this.accounts = new ArrayList();
         this.settings = new HashMap<String, String>();
 
 
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String getPhone() {
+        return phone;
     }
 
     public void addAccount(Account newAccount) {

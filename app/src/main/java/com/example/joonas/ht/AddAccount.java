@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 public class AddAccount extends AppCompatActivity {
 
@@ -14,10 +15,14 @@ public class AddAccount extends AppCompatActivity {
     RadioGroup accountType;
     String type = "nothing";
 
+    TextView infoText;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_account);
+
+        infoText = findViewById(R.id.infoText);
 
         accountId = findViewById(R.id.accountId);
         accountType = findViewById(R.id.accountType);
@@ -38,6 +43,14 @@ public class AddAccount extends AppCompatActivity {
     }
 
     public void addAccount(View v) {
+
+
+        if (accountId.getText().toString().length() == 0) {
+            infoText.setText("Tarkista tilinumero.");
+            return;
+        }
+
+
         User curUser = Bank.getUser(Current.currentUser);
         if (type.equals("saving")) {
             curUser.addAccount(new SavingAccount(0, accountId.getText().toString()));
@@ -54,6 +67,7 @@ public class AddAccount extends AppCompatActivity {
 
         }
         else {
+            infoText.setText("Valitse tilin tyyppi.");
             System.out.println("Tilin tyyppiä ei ole valittu.");
             return;
         }

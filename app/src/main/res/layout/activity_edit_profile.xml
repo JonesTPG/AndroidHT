@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".UserMain"
+    tools:context=".EditProfile"
     tools:showIn="@layout/app_bar_user_main"
     android:background="@color/graylight"
     android:orientation="vertical"
@@ -41,21 +41,10 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Lisää uusi kortti"
+                android:text="Muokkaa profiilia"
                 android:textColor="#fff"
                 android:textStyle="bold"
                 android:textSize="21sp"/>
-
-            <TextView
-                android:id="@+id/infoText"
-                android:layout_marginTop="10dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:textColor="#fff"
-                android:textStyle="bold"
-                android:textSize="16sp"/>
 
 
 
@@ -78,17 +67,18 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tili, johon kortti liitetään:"
+                android:text="Osoite"
                 android:textStyle="bold"
                 android:textSize="24dp"/>
-           <Spinner
-               android:id="@+id/accountSpinner"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:spinnerMode="dropdown"
-               >
+            <EditText
+                android:id="@+id/newAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:inputType="text"
+                android:imeOptions="actionDone"
+                />
 
-           </Spinner>
         </LinearLayout>
 
         <LinearLayout
@@ -99,11 +89,11 @@
 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Kortin numero:"
+                android:text="Sähköposti"
                 android:textStyle="bold"
                 android:textSize="24dp"/>
             <EditText
-                android:id="@+id/cardId"
+                android:id="@+id/newEmail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:maxLines="1"
@@ -119,11 +109,11 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Nostoraja:"
+                android:text="Puhelinnumero"
                 android:textStyle="bold"
                 android:textSize="24dp"/>
             <EditText
-                android:id="@+id/withdrawlimit"
+                android:id="@+id/newPhone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:maxLines="1"
@@ -132,58 +122,8 @@
                 />
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Maksuraja:"
-                android:textStyle="bold"
-                android:textSize="24dp"/>
-            <EditText
-                android:id="@+id/amountlimit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:maxLines="1"
-                android:inputType="text"
-                android:imeOptions="actionDone"
-                />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Toimivuus:"
-                android:textStyle="bold"
-                android:textSize="24dp"/>
-
-            <RadioGroup
-                android:id="@+id/cardType"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <RadioButton
-                    android:id="@+id/physical"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Vain fyysinen osto"/>
 
 
-                <RadioButton
-                    android:id="@+id/online"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Myös verkko-ostot"/>
-            </RadioGroup>
-
-        </LinearLayout>
 
     </LinearLayout>
 
@@ -194,9 +134,16 @@
         android:layout_gravity="center_horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Lisää kortti"
-        android:onClick="validateCardandAdd"
+        android:text="Tallenna muutokset"
+        android:onClick="saveProfile"
+
         />
+
+    <TextView
+        android:id="@+id/infoText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""/>
 
 
 

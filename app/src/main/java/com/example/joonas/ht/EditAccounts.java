@@ -34,7 +34,5 @@ public class EditAccounts extends AppCompatActivity {
         recyclerView.setAdapter(adapteri);
     }
 
-    public void editAccount(View v) {
-        startActivity(new Intent(EditAccounts.this, UserMain.class));
-    }
+
 }

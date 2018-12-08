@@ -142,13 +142,14 @@
             <ImageView
                 android:layout_width="36dp"
                 android:layout_height="36dp"
-                android:src="@drawable/ic_person_black_24dp"/>
+                android:src="@drawable/ic_location_city_black_24dp"/>
             <TextView
+                android:id="@+id/address"
                 android:textStyle="bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="20dp"
-                android:text="testikäyttäjä"
+                android:text="ei määritetty"
                 />
         </LinearLayout>
 
@@ -163,11 +164,12 @@
                 android:layout_height="36dp"
                 android:src="@drawable/ic_email_black_24dp"/>
             <TextView
+                android:id="@+id/email"
                 android:textStyle="bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="20dp"
-                android:text="testi@gmail.com"
+                android:text="ei määritetty"
                 />
         </LinearLayout>
 
@@ -182,11 +184,12 @@
                 android:layout_height="36dp"
                 android:src="@drawable/ic_local_phone_black_24dp"/>
             <TextView
+                android:id="@+id/phone"
                 android:textStyle="bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="20dp"
-                android:text="0504043908"
+                android:text="ei määritetty"
                 />
         </LinearLayout>
 

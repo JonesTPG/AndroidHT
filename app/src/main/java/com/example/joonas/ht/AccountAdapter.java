@@ -70,6 +70,15 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.ProductV
             editButton = itemView.findViewById(R.id.editButton);
             balance = itemView.findViewById(R.id.balance);
 
+            editButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    System.out.println(accountId.getText());
+
+                }
+            });
+
         }
     }
 }

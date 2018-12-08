@@ -13,13 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.EditText;
 import android.widget.TextView;
-
-
-import java.util.HashMap;
-
-
 
 
 public class UserMain extends AppCompatActivity
@@ -33,6 +27,9 @@ public class UserMain extends AppCompatActivity
     TextView accountAmount;
     TextView cardAmount;
 
+    TextView address;
+    TextView email;
+    TextView phone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +69,17 @@ public class UserMain extends AppCompatActivity
 
         cardAmount = findViewById(R.id.cardAmount);
         cardAmount.setText(Integer.toString(curUser.getCardsAmount()));
+
+        address = findViewById(R.id.address);
+        address.setText(curUser.getAddress());
+
+        email = findViewById(R.id.email);
+        email.setText(curUser.getEmail());
+
+        phone = findViewById(R.id.phone);
+        phone.setText(curUser.getPhone());
+
+
 
     }
 
@@ -138,6 +146,9 @@ public class UserMain extends AppCompatActivity
         }
 
         else if (id == R.id.manage_profile) {
+
+            startActivity(new Intent(UserMain.this, EditProfile.class));
+
 
         } else if (id == R.id.move_own) {
 

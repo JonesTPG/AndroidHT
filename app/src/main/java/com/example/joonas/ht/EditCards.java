@@ -12,6 +12,8 @@ import java.util.ArrayList;
 
 
 
+
+
 public class EditCards extends AppCompatActivity {
 
     ArrayList<Card> cardList;
@@ -40,4 +42,7 @@ public class EditCards extends AppCompatActivity {
         System.out.println(v.getId());
         startActivity(new Intent(EditCards.this, UserMain.class));
     }
+
+
+
 }

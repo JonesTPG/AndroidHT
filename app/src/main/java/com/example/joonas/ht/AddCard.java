@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -24,11 +25,15 @@ public class AddCard extends AppCompatActivity {
     EditText amountlimit;
     String type = "nothing";
 
+    TextView infoText;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_card);
 
+
+        infoText = findViewById(R.id.infoText);
         spinneri = findViewById(R.id.accountSpinner);
 
         accountList = Bank.getUser(Current.currentUser).getCreditAccounts();
@@ -80,16 +85,19 @@ public class AddCard extends AppCompatActivity {
             iAmountlimit = Integer.parseInt(amountlimit.getText().toString());
         }
         catch (NumberFormatException e) {
+            infoText.setText("Tarkista nosto- ja maksuraja.");
             System.out.println("Väärä syöte.");
             return;
         }
 
         if ( type.equals("nothing") ) {
+            infoText.setText("Määritä kortin toimivuus.");
             System.out.println("Toimivuutta ei valittu.");
             return;
         }
 
         if ( sCardId.length() == 0 || (selectedAccount == null) ) {
+            infoText.setText("Tarkista liitettävä tili ja kortin numero.");
             System.out.println("ei id:tä tai tiliä");
             return;
         }

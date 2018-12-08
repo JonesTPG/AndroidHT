@@ -48,7 +48,7 @@
                 android:text="muokkaa"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small.Inverse"
                 android:textStyle="bold"
-                android:onClick="editAccount"
+
                 />
 
             <TextView
