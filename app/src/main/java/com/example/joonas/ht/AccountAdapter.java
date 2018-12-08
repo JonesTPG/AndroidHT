@@ -1,6 +1,7 @@
 package com.example.joonas.ht;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,11 +19,14 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.ProductV
 
     private Context mCtx;
 
+
+
     private ArrayList<Account> accountList;
 
     public AccountAdapter(Context mCtx, ArrayList<Account> accountList) {
         this.mCtx = mCtx;
         this.accountList = accountList;
+
     }
 
     @Override
@@ -74,7 +78,10 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.ProductV
                 @Override
                 public void onClick(View v) {
 
-                    System.out.println(accountId.getText());
+                    Intent intent= new Intent(mCtx, EditAccount.class);
+                    intent.putExtra("accountId",accountId.getText().toString());
+                    mCtx.startActivity(intent);
+
 
                 }
             });

@@ -10,11 +10,14 @@ import android.view.View;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
+
+
 public class EditAccounts extends AppCompatActivity {
 
     ArrayList<Account> accountList;
 
     RecyclerView recyclerView;
+    static String toBeEdited;
 
 
     @Override
@@ -33,6 +36,10 @@ public class EditAccounts extends AppCompatActivity {
         AccountAdapter adapteri = new AccountAdapter(this, accountList);
         recyclerView.setAdapter(adapteri);
     }
+
+
+
+
 
 
 }
