@@ -77,7 +77,7 @@ public class User {
     public ArrayList<String> getCreditAccounts() {
         ArrayList<String> taulukko = new ArrayList<String>();
         for (int i=0; i<accounts.size(); i++) {
-            if ( accounts.get(i) instanceof CreditAccount ) {
+            if ( accounts.get(i).getType().equals("käyttötili") ) {
                 taulukko.add(accounts.get(i).getId());
             }
         }
@@ -98,6 +98,9 @@ public class User {
     public Card getCardById(String cardId) {
         for (int i=0; i<accounts.size(); i++) {
             Card card = accounts.get(i).getCard(cardId);
+            if (card == null) {
+                continue;
+            }
             if (card.getCardId().equals(cardId)) {
                 return card;
             }
@@ -151,6 +154,14 @@ public class User {
         int amount = 0;
         for (int i=0; i<accounts.size(); i++) {
             amount = amount + accounts.get(i).getCards().size();
+        }
+        return amount;
+    }
+
+    public int getEventsAmount() {
+        int amount = 0;
+        for (int i=0; i<accounts.size(); i++) {
+            amount = amount + accounts.get(i).getEventsAmount();
         }
         return amount;
     }

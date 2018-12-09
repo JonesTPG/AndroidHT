@@ -53,14 +53,16 @@ public class AddAccount extends AppCompatActivity {
 
         User curUser = Bank.getUser(Current.currentUser);
         if (type.equals("saving")) {
-            curUser.addAccount(new SavingAccount(0, accountId.getText().toString()));
+            curUser.addAccount(new Account(0, accountId.getText().toString(), 0, false,
+                                    "säästötili"));
             System.out.println("success");
             startActivity(new Intent(AddAccount.this, UserMain.class));
             return;
 
         }
         else if (type.equals("credit")) {
-            curUser.addAccount(new CreditAccount(0, accountId.getText().toString(), 0));
+            curUser.addAccount(new Account(0, accountId.getText().toString(), 0, true,
+                                            "käyttötili"));
             System.out.println("success2");
             startActivity(new Intent(AddAccount.this, UserMain.class));
             return;

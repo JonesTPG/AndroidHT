@@ -3,7 +3,7 @@ package com.example.joonas.ht;
 import java.util.ArrayList;
 
 
-public abstract class Account {
+public class Account {
 
 
 
@@ -12,9 +12,21 @@ public abstract class Account {
     protected int creditLimit;
     protected boolean canBeUsed;
     protected String type;
+    ArrayList<Event> events;
+    ArrayList<Card> cards;
 
-    ArrayList<Event> events = new ArrayList<Event>();
-    ArrayList<Card> cards = new ArrayList<Card>();
+    public Account(int balance, String id, int creditLimit, boolean canBeUsed, String type) {
+        this.balance = balance;
+        this.id = id;
+        this.creditLimit = creditLimit;
+        this.canBeUsed = canBeUsed;
+        this.type = type;
+
+        events = new ArrayList<Event>();
+        cards = new ArrayList<Card>();
+    }
+
+
 
 
     public void setCanBeUsed(boolean canBeUsed) {
@@ -23,6 +35,10 @@ public abstract class Account {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public int getEventsAmount() {
+        return events.size();
     }
 
     public int getBalance() {
@@ -63,9 +79,9 @@ public abstract class Account {
         return null;
     }
 
-    public boolean withdDraw(int amount) {
+    public boolean withDraw(int amount) {
         int newBalance = this.balance-amount;
-        if ( newBalance < 0 ) {
+        if ( newBalance < -this.creditLimit ) {
             return false;
         }
         else {
@@ -83,43 +99,6 @@ public abstract class Account {
         events.add(event);
     }
 
-
-
-}
-
-class SavingAccount extends Account {
-
-
-    public SavingAccount(int balance, String accountId) {
-        this.balance = balance;
-        this.id = accountId;
-        this.canBeUsed = false;
-        this.type = "säästötili";
-    }
-
-}
-
-class CreditAccount extends Account {
-
-
-    public CreditAccount(int balance, String accountId, int creditLimit) {
-        this.balance = balance;
-        this.id = accountId;
-        this.creditLimit = creditLimit;
-        this.canBeUsed = true;
-        this.type = "käyttötili";
-    }
-
-    public void withDraw(int amount) {
-        int newBalance = this.balance-amount;
-        if ( newBalance < -this.creditLimit ) {
-            return;
-        }
-        else {
-            this.balance = newBalance;
-        }
-    }
-
     public void addCard(Card card) {
         cards.add(card);
     }
@@ -127,7 +106,14 @@ class CreditAccount extends Account {
     public ArrayList<Card> getAccountCards() {
         return cards;
     }
+
+
 }
+
+
+
+
+
 
 
 

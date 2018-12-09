@@ -19,7 +19,7 @@ public class EditCard extends AppCompatActivity {
     Intent intent;
     String cardId;
 
-    String sUsability;
+    String sUsability = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +64,32 @@ public class EditCard extends AppCompatActivity {
         card.printInfo();
 
         //todo: tallenna uudet tiedot kortti-olioon.
+
+        if ( sUsability.equals("") ) {
+            infoText.setText("Tarkista kortin toimivuus.");
+            return;
+        }
+
+        int iWithdrawlimit;
+        int iAmountlimit;
+
+        try {
+            iWithdrawlimit = Integer.parseInt(withdrawlimit.getText().toString());
+            iAmountlimit = Integer.parseInt(amountlimit.getText().toString());
+        }
+        catch (NumberFormatException e) {
+            infoText.setText("Tarkista nosto- ja maksuraja.");
+
+            return;
+        }
+
+
+
+        card.setAmountLimit(iAmountlimit);
+        card.setWithdrawLimit(iWithdrawlimit);
+        card.setType(sUsability);
+
+        startActivity(new Intent(EditCard.this, UserMain.class));
 
         return;
     }

@@ -41,4 +41,24 @@ public class Card {
         System.out.println(this.accountId);
         System.out.println(this.type);
     }
+
+    public void setCardId(String cardId) {
+        this.cardId = cardId;
+    }
+
+    public void setAccountId(String accountId) {
+        this.accountId = accountId;
+    }
+
+    public void setWithdrawLimit(int withdrawLimit) {
+        this.withdrawLimit = withdrawLimit;
+    }
+
+    public void setAmountLimit(int amountLimit) {
+        this.amountLimit = amountLimit;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 }

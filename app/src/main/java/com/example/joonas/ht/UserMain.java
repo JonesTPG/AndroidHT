@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextClock;
 import android.widget.TextView;
 
 
@@ -26,6 +27,7 @@ public class UserMain extends AppCompatActivity
     TextView curUserName;
     TextView accountAmount;
     TextView cardAmount;
+    TextView eventAmount;
 
     TextView address;
     TextView email;
@@ -69,6 +71,9 @@ public class UserMain extends AppCompatActivity
 
         cardAmount = findViewById(R.id.cardAmount);
         cardAmount.setText(Integer.toString(curUser.getCardsAmount()));
+
+        eventAmount = findViewById(R.id.eventAmount);
+        eventAmount.setText(Integer.toString(curUser.getEventsAmount()));
 
         address = findViewById(R.id.address);
         address.setText(curUser.getAddress());

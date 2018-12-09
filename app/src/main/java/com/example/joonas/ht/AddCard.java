@@ -102,7 +102,7 @@ public class AddCard extends AppCompatActivity {
             return;
         }
 
-        CreditAccount toBeAdded = (CreditAccount) Bank.getUser(Current.currentUser).getAccount(selectedAccount);
+        Account toBeAdded = Bank.getUser(Current.currentUser).getAccount(selectedAccount);
         toBeAdded.addCard(new Card(sCardId, selectedAccount, iWithdrawlimit, iAmountlimit, type));
         System.out.println("Card added.");
 
