@@ -53,6 +53,16 @@ public abstract class Account {
         return type;
     }
 
+    public Card getCard(String cardId) {
+        for (int i=0; i<cards.size(); i++) {
+            if (cards.get(i).getCardId().equals(cardId)) {
+                return cards.get(i);
+            }
+        }
+
+        return null;
+    }
+
     public boolean withdDraw(int amount) {
         int newBalance = this.balance-amount;
         if ( newBalance < 0 ) {

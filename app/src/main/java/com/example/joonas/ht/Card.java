@@ -10,6 +10,7 @@ public class Card {
 
     public Card(String cardiId, String accountId, int withdrawLimit, int amountLimit, String type) {
         this.cardId = cardiId;
+        this.accountId = accountId;
         this.withdrawLimit = withdrawLimit;
         this.amountLimit = amountLimit;
         this.type = type;
@@ -33,5 +34,11 @@ public class Card {
 
     public String getType() {
         return type;
+    }
+
+    public void printInfo() {
+        System.out.println(this.cardId);
+        System.out.println(this.accountId);
+        System.out.println(this.type);
     }
 }

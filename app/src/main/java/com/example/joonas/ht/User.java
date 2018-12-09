@@ -95,6 +95,16 @@ public class User {
         return null;
     }
 
+    public Card getCardById(String cardId) {
+        for (int i=0; i<accounts.size(); i++) {
+            Card card = accounts.get(i).getCard(cardId);
+            if (card.getCardId().equals(cardId)) {
+                return card;
+            }
+        }
+        return null;
+    }
+
     public HashMap<String, Object> getInfo() {
         HashMap<String, Object> info = new HashMap<String, Object>();
         info.put("username", this.userName);

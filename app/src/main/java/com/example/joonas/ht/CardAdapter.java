@@ -1,6 +1,7 @@
 package com.example.joonas.ht;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -71,6 +72,18 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ProductViewHol
             editButton = itemView.findViewById(R.id.editButton);
             amountlimit = itemView.findViewById(R.id.amountlimit);
             withdrawlimit = itemView.findViewById(R.id.withdrawlimit);
+
+            editButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    Intent intent= new Intent(mCtx, EditCard.class);
+                    intent.putExtra("cardId",cardId.getText().toString());
+                    mCtx.startActivity(intent);
+
+
+                }
+            });
 
         }
     }
