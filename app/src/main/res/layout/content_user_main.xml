@@ -197,13 +197,15 @@
     </LinearLayout>
 
     <Button
+        android:id="@+id/addaccountbutton"
         android:textColor="#fff"
         android:background="@drawable/buttonstyleithgradient"
         android:layout_marginTop="20dp"
         android:layout_gravity="center_horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Lataa tapahtumat"/>
+        android:text="Lisää tili"
+        android:onClick="addAccount"/>
 
 
 

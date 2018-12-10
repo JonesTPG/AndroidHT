@@ -1,5 +1,6 @@
 package com.example.joonas.ht;
 
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -7,9 +8,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 
+import java.io.FileOutputStream;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class ShowEvents extends AppCompatActivity {
 
@@ -20,6 +24,8 @@ public class ShowEvents extends AppCompatActivity {
     ArrayList<String> accountList;
 
     String selectedAccount;
+
+    Button saveEvents;
 
 
     @Override
@@ -33,6 +39,7 @@ public class ShowEvents extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         spinneri = findViewById(R.id.accountSpinner);
+        saveEvents = findViewById(R.id.save_events);
 
 
         accountList = Bank.getUser(Current.currentUser).getAccountNames();
@@ -58,5 +65,27 @@ public class ShowEvents extends AppCompatActivity {
         });
 
 
+    }
+
+    public void saveEvents(View v) {
+
+        if (eventList == null || eventList.size() == 0) {
+            return;
+        }
+        String json = SaveEvents.getEventsAsJson(eventList);
+
+        String filename = selectedAccount;
+
+        FileOutputStream outputStream;
+
+        try {
+            outputStream = openFileOutput(filename, Context.MODE_PRIVATE);
+            outputStream.write(json.getBytes());
+            outputStream.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return;
     }
 }

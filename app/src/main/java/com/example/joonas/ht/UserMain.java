@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.TextClock;
 import android.widget.TextView;
 
@@ -32,6 +33,8 @@ public class UserMain extends AppCompatActivity
     TextView address;
     TextView email;
     TextView phone;
+
+    Button addAccount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,6 +86,8 @@ public class UserMain extends AppCompatActivity
 
         phone = findViewById(R.id.phone);
         phone.setText(curUser.getPhone());
+
+        addAccount = findViewById(R.id.addaccountbutton);
 
 
 
@@ -166,6 +171,8 @@ public class UserMain extends AppCompatActivity
 
 
         else if (id == R.id.move_own) {
+            startActivity(new Intent(UserMain.this, TransferOwn.class));
+
 
         } else if (id == R.id.move_other) {
 
@@ -174,5 +181,11 @@ public class UserMain extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void addAccount(View v) {
+        startActivity(new Intent(UserMain.this, AddAccount.class));
+
+
     }
 }

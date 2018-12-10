@@ -1,5 +1,10 @@
 package com.example.joonas.ht;
 
+import android.content.Context;
+
+import com.google.gson.Gson;
+
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 
 public class SaveEvents {
@@ -13,7 +18,16 @@ public class SaveEvents {
 
     }
 
-    public void save(ArrayList<Event> events) {
+    public static String getEventsAsJson(ArrayList<Event> events) {
+
+        String fullJson = "";
+        Gson gson = new Gson();
+        for (int i=0; i<events.size(); i++) {
+            String json = gson.toJson(events.get(i));
+            fullJson = fullJson + json + "\n";
+
+        }
+        return fullJson;
 
     }
 }
