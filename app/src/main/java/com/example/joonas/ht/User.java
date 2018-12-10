@@ -176,5 +176,15 @@ public class User {
         return cards;
     }
 
+    public ArrayList<String> getCardIds() {
+        ArrayList<String> cards = new ArrayList<String>();
+        for (int i=0; i<accounts.size(); i++) {
+            for (int j=0; j<accounts.get(i).getCards().size(); j++) {
+                cards.add(accounts.get(i).getCards().get(j).getCardId());
+            }
+        }
+        return cards;
+    }
+
 
 }

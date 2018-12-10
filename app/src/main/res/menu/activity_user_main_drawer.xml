@@ -42,6 +42,11 @@
                 android:title="Lisää rahaa tilille" />
 
             <item
+                android:id="@+id/cardPayment"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Tee korttimaksu" />
+
+            <item
                 android:id="@+id/move_own"
                 android:icon="@drawable/ic_menu_share"
                 android:title="Tilisiirto omalle tilille" />

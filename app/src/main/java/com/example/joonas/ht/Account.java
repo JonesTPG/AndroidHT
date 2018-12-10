@@ -79,6 +79,17 @@ public class Account {
         return null;
     }
 
+    public ArrayList<String> getCardIds() {
+        ArrayList<String> cards = new ArrayList<String>();
+
+        for (int i=0; i<this.cards.size(); i++) {
+            cards.add(this.cards.get(i).getCardId());
+        }
+
+        return cards;
+
+    }
+
     public boolean withDraw(int amount) {
         int newBalance = this.balance-amount;
         if ( newBalance < -this.creditLimit ) {

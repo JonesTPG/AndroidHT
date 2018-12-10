@@ -56,7 +56,33 @@ public class Bank {
             return 1;
         }
 
+    }
 
+    public static int cardPayment(String cardId, int amount) {
+
+        Card card = getUser(Current.currentUser).getCardById(cardId);
+        Account account =  getUser(Current.currentUser).getAccount(card.getAccountId());
+
+        if (amount > card.getAmountLimit()) {
+            return -2;
+        }
+        boolean success = account.withDraw(amount);
+        if (success) {
+
+            Date date = new Date();
+            String type = "korttimaksu";
+            String from = card.getCardId();
+            String to = "pankki";
+
+
+            account.addEvent(new Event(date, type, from, to, amount));
+
+
+            return 1;
+        }
+        else {
+            return -1;
+        }
 
     }
 

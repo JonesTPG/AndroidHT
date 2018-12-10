@@ -36,7 +36,8 @@
         <activity android:name=".Deposit" />
         <activity android:name=".ShowEvents" />
         <activity android:name=".EditCard" />
-        <activity android:name=".TransferOwn"></activity>
+        <activity android:name=".TransferOwn" />
+        <activity android:name=".CardPayment"></activity>
     </application>
 
 </manifest>

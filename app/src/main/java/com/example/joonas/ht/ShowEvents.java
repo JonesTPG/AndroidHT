@@ -1,6 +1,7 @@
 package com.example.joonas.ht;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -85,6 +86,8 @@ public class ShowEvents extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        startActivity(new Intent(ShowEvents.this, UserMain.class));
 
         return;
     }

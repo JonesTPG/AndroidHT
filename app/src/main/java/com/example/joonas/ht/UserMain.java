@@ -168,6 +168,11 @@ public class UserMain extends AppCompatActivity
             startActivity(new Intent(UserMain.this, Deposit.class));
         }
 
+        else if (id == R.id.cardPayment) {
+            startActivity(new Intent(UserMain.this, CardPayment.class));
+        }
+
+
 
 
         else if (id == R.id.move_own) {
