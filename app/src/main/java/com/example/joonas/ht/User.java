@@ -14,7 +14,7 @@ public class User {
 
 
     ArrayList<Account> accounts;
-    HashMap<String, String> settings;
+
 
 
     public User(String userName) {
@@ -23,7 +23,7 @@ public class User {
         this.address = "ei määritetty";
         this.phone = "ei määritetty";
         this.accounts = new ArrayList();
-        this.settings = new HashMap<String, String>();
+
 
 
     }
@@ -108,15 +108,7 @@ public class User {
         return null;
     }
 
-    public HashMap<String, Object> getInfo() {
-        HashMap<String, Object> info = new HashMap<String, Object>();
-        info.put("username", this.userName);
-        info.put("email", this.email);
-        info.put("accounts", this.accounts);
-        info.put("settings", this.settings);
 
-        return info;
-    }
 
 
     public void printInfo() {

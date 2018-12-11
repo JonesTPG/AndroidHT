@@ -337,7 +337,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             showProgress(false);
 
             if (success) {
-                Current.currentUser = mEmail;
+                //Current.currentUser = mEmail;
+
+                Current. currentUser = Bank.loadUser(mEmail, getApplicationContext());
                 startActivity(new Intent(LoginActivity.this, UserMain.class));
                 finish();
             } else {

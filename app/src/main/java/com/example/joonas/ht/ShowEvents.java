@@ -75,7 +75,7 @@ public class ShowEvents extends AppCompatActivity {
         }
         String json = SaveEvents.getEventsAsJson(eventList);
 
-        String filename = selectedAccount;
+        String filename = selectedAccount + "-events";
 
         FileOutputStream outputStream;
 

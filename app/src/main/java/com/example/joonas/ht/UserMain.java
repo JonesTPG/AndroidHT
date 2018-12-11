@@ -1,5 +1,6 @@
 package com.example.joonas.ht;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -16,6 +17,9 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextClock;
 import android.widget.TextView;
+
+import java.io.FileOutputStream;
+import java.util.concurrent.ConcurrentNavigableMap;
 
 
 public class UserMain extends AppCompatActivity
@@ -119,7 +123,32 @@ public class UserMain extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            return true;
+            System.out.println("logout");
+
+            String userJson = Bank.saveUser(Bank.getUser(Current.currentUser));
+            if (userJson != null) {
+                String filename = Bank.getUser(Current.currentUser).getUserName()+"-data";
+
+                FileOutputStream outputStream;
+
+                try {
+                    outputStream = openFileOutput(filename, Context.MODE_PRIVATE);
+                    outputStream.write(userJson.getBytes());
+                    outputStream.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                startActivity(new Intent(UserMain.this, LoginActivity.class));
+
+                return true;
+
+            }
+            else {
+
+                return true;
+            }
+
+
         }
 
         return super.onOptionsItemSelected(item);
