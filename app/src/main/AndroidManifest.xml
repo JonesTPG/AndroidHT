@@ -37,7 +37,9 @@
         <activity android:name=".ShowEvents" />
         <activity android:name=".EditCard" />
         <activity android:name=".TransferOwn" />
-        <activity android:name=".CardPayment"></activity>
+        <activity android:name=".CardPayment" />
+        <activity android:name=".CardWithdraw" />
+        <activity android:name=".TransferOther"></activity>
     </application>
 
 </manifest>

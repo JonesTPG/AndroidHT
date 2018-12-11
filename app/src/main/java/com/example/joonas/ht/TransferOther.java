@@ -12,14 +12,12 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class TransferOwn extends AppCompatActivity {
+public class TransferOther extends AppCompatActivity {
 
     Spinner from;
-    Spinner to;
-
     String selectedFrom;
-    String selectedTo;
 
+    EditText accountTo;
     TextView infoText;
     EditText amount;
 
@@ -28,16 +26,17 @@ public class TransferOwn extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_transfer_own);
+        setContentView(R.layout.activity_transfer_other);
+
 
         amount = findViewById(R.id.amount);
         infoText = findViewById(R.id.infoText);
+        accountTo = findViewById(R.id.accountToId);
 
         from = findViewById(R.id.accountSpinnerFrom);
-        to = findViewById(R.id.accountSpinnerTo);
+
 
         accountList = Bank.getUser(Current.currentUser).getAccountNames();
-
 
         ArrayAdapter<String> adapterFrom = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, accountList);
         from.setAdapter(adapterFrom);
@@ -53,28 +52,12 @@ public class TransferOwn extends AppCompatActivity {
             }
         });
 
-
-
-
-        ArrayAdapter<String> adapterTo = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, accountList);
-        to.setAdapter(adapterTo);
-        to.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String selectedItem = parent.getItemAtPosition(position).toString();
-                selectedTo = selectedItem;
-                // do your stuff
-
-            } // to close the onItemSelected
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
     }
 
-
-    public void transferOwnMoney(View v) {
+    public void transferMoney(View v) {
 
         int iAmount;
+        String selectedTo = accountTo.getText().toString();
         try {
             iAmount = Integer.parseInt(amount.getText().toString());
 
@@ -85,8 +68,13 @@ public class TransferOwn extends AppCompatActivity {
             return;
         }
 
-        if (selectedFrom == null || selectedFrom.equals("") || selectedTo == null || selectedTo.equals("")) {
-            infoText.setText("Valitse kumpaankin kenttään tili.");
+        if (selectedTo == null || selectedTo.equals("")) {
+            infoText.setText("Tarkista tili, jolle raha siirretään.");
+            return;
+        }
+
+        if (selectedFrom == null || selectedFrom.equals("")) {
+            infoText.setText("Tarkista tili, jolta raha siirretään.");
             return;
         }
 
@@ -95,13 +83,14 @@ public class TransferOwn extends AppCompatActivity {
             return;
         }
 
-        int success = Bank.transferMoney(selectedFrom, selectedTo, iAmount);
+        int success = Bank.transferMoneyToOther(selectedTo, selectedFrom, iAmount);
         if (success == 1) {
-            startActivity(new Intent(TransferOwn.this, UserMain.class));
+            startActivity(new Intent(TransferOther.this, UserMain.class));
             return;
         }
+
         else {
-            infoText.setText("Siirto ei onnistunut.");
+            infoText.setText("Virhe on tapahtunut.");
             return;
         }
 

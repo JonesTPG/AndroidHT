@@ -63,6 +63,11 @@ public class Deposit extends AppCompatActivity {
 
             return;
         }
+
+        if (selectedAccount == null || selectedAccount.equals("")) {
+            infoText.setText("Tiliä ei ole valittu.");
+            return;
+        }
         User curUser = Bank.getUser(Current.currentUser);
         Account account = curUser.getAccount(selectedAccount);
         account.deposit(amountInt);

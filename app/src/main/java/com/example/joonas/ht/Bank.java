@@ -58,6 +58,16 @@ public class Bank {
 
     }
 
+    public static int transferMoneyToOther(String fromId, String toId, int amount) {
+        //todo: fromId on nykyisen käyttäjän, toId jonkun toisen käyttäjän tili. Molemmat tili-oliot
+        //pitäisi saada haltuun ja tehdä sitten rahojen siirto.
+
+        //todo: tarkista myös, että tilit eivät ole saman käyttäjän
+
+
+        return 1;
+    }
+
     public static int cardPayment(String cardId, int amount) {
 
         Card card = getUser(Current.currentUser).getCardById(cardId);
@@ -73,6 +83,33 @@ public class Bank {
             String type = "korttimaksu";
             String from = card.getCardId();
             String to = "pankki";
+
+
+            account.addEvent(new Event(date, type, from, to, amount));
+
+
+            return 1;
+        }
+        else {
+            return -1;
+        }
+
+    }
+
+    public static int cardWithdraw(String cardId, int amount) {
+        Card card = getUser(Current.currentUser).getCardById(cardId);
+        Account account =  getUser(Current.currentUser).getAccount(card.getAccountId());
+
+        if (amount > card.getWithdrawLimit()) {
+            return -2;
+        }
+        boolean success = account.withDraw(amount);
+        if (success) {
+
+            Date date = new Date();
+            String type = "korttinosto";
+            String from = card.getCardId();
+            String to = getUser(Current.currentUser).getUserName(); ;
 
 
             account.addEvent(new Event(date, type, from, to, amount));

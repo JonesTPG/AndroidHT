@@ -172,7 +172,9 @@ public class UserMain extends AppCompatActivity
             startActivity(new Intent(UserMain.this, CardPayment.class));
         }
 
-
+        else if (id == R.id.cardWithdraw) {
+            startActivity(new Intent(UserMain.this, CardWithdraw.class));
+        }
 
 
         else if (id == R.id.move_own) {
@@ -180,7 +182,7 @@ public class UserMain extends AppCompatActivity
 
 
         } else if (id == R.id.move_other) {
-
+            startActivity(new Intent(UserMain.this, TransferOther.class));
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
