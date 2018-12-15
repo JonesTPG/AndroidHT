@@ -14,14 +14,17 @@ import java.util.ArrayList;
 
 public class TransferOther extends AppCompatActivity {
 
+    Spinner userTo;
     Spinner from;
     String selectedFrom;
+    String selectedUserTo;
 
     EditText accountTo;
     TextView infoText;
     EditText amount;
 
     ArrayList<String> accountList;
+    ArrayList<String> userList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,8 +37,10 @@ public class TransferOther extends AppCompatActivity {
         accountTo = findViewById(R.id.accountToId);
 
         from = findViewById(R.id.accountSpinnerFrom);
+        userTo = findViewById(R.id.userSpinnerTo);
 
 
+        userList = Bank.getUsers(getApplicationContext());
         accountList = Bank.getUser(Current.currentUser).getAccountNames();
 
         ArrayAdapter<String> adapterFrom = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, accountList);
@@ -44,6 +49,20 @@ public class TransferOther extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selectedItem = parent.getItemAtPosition(position).toString();
                 selectedFrom = selectedItem;
+                // do your stuff
+
+            } // to close the onItemSelected
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        ArrayAdapter<String> adapterUserTo = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, userList);
+        userTo.setAdapter(adapterUserTo);
+        userTo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectedItem = parent.getItemAtPosition(position).toString();
+                selectedUserTo = selectedItem;
                 // do your stuff
 
             } // to close the onItemSelected

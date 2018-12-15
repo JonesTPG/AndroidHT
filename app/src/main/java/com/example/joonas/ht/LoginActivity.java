@@ -51,7 +51,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      * A dummy authentication store containing known user names and passwords.
      * TODO: remove after connecting to a real authentication system.
      */
-    private static ArrayList<String> credentials = new ArrayList<String>();
+    private static ArrayList<String> credentials;
 
 
     /**
@@ -70,9 +70,19 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         // Set up the login form.
+
+
+
+        credentials = Bank.getCredentials(getApplicationContext());
+        if (credentials == null) {
+            credentials = new ArrayList<String>();
+        }
+
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         populateAutoComplete();
-        credentials.add("joonas:a");
+
+        //credentials.add("joonas:a");
+
         isNewUser = false;
 
         mPasswordView = (EditText) findViewById(R.id.password);
@@ -336,6 +346,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             Current.currentUser = mEmail;
             isNewUser = true;
             credentials.add(mEmail+":"+mPassword);
+            Bank.saveCredentials(credentials, getApplicationContext());
 
             return true;
         }
@@ -353,7 +364,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                     finish();
                 }
                 else {
-                    Current.currentUser = Bank.loadUser(mEmail, getApplicationContext());
+                    Bank.loadUser(mEmail, getApplicationContext());
                     startActivity(new Intent(LoginActivity.this, UserMain.class));
                     finish();
                 }

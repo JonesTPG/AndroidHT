@@ -7,6 +7,7 @@ import com.google.gson.Gson;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -179,6 +180,85 @@ public class Bank {
 
 
         return user.getUserName();
+    }
+
+    public static ArrayList<String> getCredentials(Context context) {
+
+
+
+        FileInputStream fis = null;
+        try {
+            fis = context.openFileInput("credentials");
+        } catch (FileNotFoundException e) {
+
+            e.printStackTrace();
+            return null;
+        }
+        InputStreamReader isr = new InputStreamReader(fis);
+        BufferedReader bufferedReader = new BufferedReader(isr);
+        StringBuilder sb = new StringBuilder();
+        String line;
+
+        try {
+
+            while ((line = bufferedReader.readLine()) != null) {
+                sb.append(line);
+            }
+        }
+
+        catch (IOException e) {
+            return null;
+        }
+
+        String json = sb.toString();
+        System.out.println("found credentials.");
+
+
+        Gson gson = new Gson();
+        ArrayList<String> credentials = gson.fromJson(json, ArrayList.class);
+        System.out.println(credentials);
+
+        return credentials;
+
+    }
+
+    public static int saveCredentials(ArrayList<String> credentials, Context context) {
+
+        String fullJson = "";
+        Gson gson = new Gson();
+        fullJson = gson.toJson(credentials);
+        System.out.println(fullJson);
+
+        String filename = "credentials";
+
+        FileOutputStream outputStream;
+
+        try {
+            outputStream = context.openFileOutput(filename, Context.MODE_PRIVATE);
+            outputStream.write(fullJson.getBytes());
+            outputStream.close();
+            return 1;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0;
+        }
+
+
+    }
+
+    public static ArrayList<String> getUsers(Context context) {
+        ArrayList<String> credentials = getCredentials(context);
+        ArrayList<String> users = new ArrayList<String>();
+
+        if (credentials == null) {
+            return null;
+        }
+
+        for (int i=0; i<credentials.size(); i++) {
+            users.add(credentials.get(i).split(":")[0]);
+        }
+        System.out.println(users);
+        return users;
     }
 
 

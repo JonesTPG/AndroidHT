@@ -41,7 +41,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tilisiirto ulkopuoliselle tilille"
+                android:text="Tilisiirto toiselle käyttäjälle"
                 android:textColor="#fff"
                 android:textStyle="bold"
                 android:textSize="21sp"/>
@@ -87,11 +87,34 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Käyttäjä, jolle raha siirretään"
+                android:textStyle="bold"
+                android:textSize="24dp"/>
+
+            <Spinner
+                android:id="@+id/userSpinnerTo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:spinnerMode="dropdown"
+                >
+
+            </Spinner>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tili, jolle raha siirretään"
+                android:text="Käyttäjän tili, jolle raha siirretään"
                 android:textStyle="bold"
                 android:textSize="24dp"/>
 
