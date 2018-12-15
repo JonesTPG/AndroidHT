@@ -16,15 +16,19 @@ public class TransferOther extends AppCompatActivity {
 
     Spinner userTo;
     Spinner from;
+
+
     String selectedFrom;
     String selectedUserTo;
 
-    EditText accountTo;
+
+
     TextView infoText;
     EditText amount;
 
     ArrayList<String> accountList;
     ArrayList<String> userList;
+    EditText accountTo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,14 +38,15 @@ public class TransferOther extends AppCompatActivity {
 
         amount = findViewById(R.id.amount);
         infoText = findViewById(R.id.infoText);
-        accountTo = findViewById(R.id.accountToId);
+        accountTo = findViewById(R.id.accountTo);
 
         from = findViewById(R.id.accountSpinnerFrom);
         userTo = findViewById(R.id.userSpinnerTo);
 
 
-        userList = Bank.getUsers(getApplicationContext());
+        userList = Bank.getUserNames();
         accountList = Bank.getUser(Current.currentUser).getAccountNames();
+
 
         ArrayAdapter<String> adapterFrom = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, accountList);
         from.setAdapter(adapterFrom);
@@ -57,6 +62,7 @@ public class TransferOther extends AppCompatActivity {
             }
         });
 
+
         ArrayAdapter<String> adapterUserTo = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, userList);
         userTo.setAdapter(adapterUserTo);
         userTo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -64,6 +70,7 @@ public class TransferOther extends AppCompatActivity {
                 String selectedItem = parent.getItemAtPosition(position).toString();
                 selectedUserTo = selectedItem;
                 // do your stuff
+
 
             } // to close the onItemSelected
             public void onNothingSelected(AdapterView<?> parent) {
@@ -102,7 +109,14 @@ public class TransferOther extends AppCompatActivity {
             return;
         }
 
-        int success = Bank.transferMoneyToOther(selectedTo, selectedFrom, iAmount);
+        int success = Bank.transferMoneyToOther(selectedTo, selectedUserTo, selectedFrom, iAmount);
+
+        if ( success == -2) {
+            infoText.setText("Käyttäjällä "+ selectedUserTo + " ei ole tiliä " + selectedTo);
+        }
+        if ( success == -1) {
+            infoText.setText("Tilillä ei ole tarpeeksi rahaa.");
+        }
         if (success == 1) {
             startActivity(new Intent(TransferOther.this, UserMain.class));
             return;

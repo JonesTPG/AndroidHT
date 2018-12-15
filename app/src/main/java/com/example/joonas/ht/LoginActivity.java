@@ -360,11 +360,13 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 //Current.currentUser = mEmail;
                 System.out.println(isNewUser);
                 if (isNewUser) {
+                    Bank.loadUsers(getApplicationContext());
                     startActivity(new Intent(LoginActivity.this, UserMain.class));
                     finish();
                 }
                 else {
-                    Bank.loadUser(mEmail, getApplicationContext());
+                    Current.currentUser = mEmail;
+                    Bank.loadUsers(getApplicationContext());
                     startActivity(new Intent(LoginActivity.this, UserMain.class));
                     finish();
                 }

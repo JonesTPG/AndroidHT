@@ -71,7 +71,7 @@ public class UserMain extends AppCompatActivity
         curUserName = (TextView) findViewById(R.id.username);
         curUserName.setText(Current.currentUser);
 
-        curUser.printInfo();
+
 
         accountAmount = findViewById(R.id.accountAmount);
         accountAmount.setText(Integer.toString(curUser.getAccountsAmount()));

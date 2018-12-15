@@ -69,12 +69,30 @@ public class Bank {
 
     }
 
-    public static int transferMoneyToOther(String fromId, String toId, int amount) {
+    public static int transferMoneyToOther(String toId, String toUser, String fromId, int amount) {
         //todo: fromId on nykyisen käyttäjän, toId jonkun toisen käyttäjän tili. Molemmat tili-oliot
         //pitäisi saada haltuun ja tehdä sitten rahojen siirto.
-
+        System.out.println("from:" +fromId + " to: " + toId + toUser + amount);
         //todo: tarkista myös, että tilit eivät ole saman käyttäjän
 
+        Account from = getUser(Current.currentUser).getAccount(fromId);
+
+        if (from == null) {
+            return -3;
+        }
+
+        Account to = getUser(toUser).getAccount(toId);
+        if (to == null) {
+            return -2;
+        }
+
+        boolean success = from.withDraw(amount);
+        if (success == false) {
+            return -1;
+        }
+        else {
+            to.deposit(amount);
+        }
 
         return 1;
     }
@@ -246,6 +264,19 @@ public class Bank {
 
     }
 
+    public static ArrayList<String> getUserNames() {
+        ArrayList<String> usernames = new ArrayList<String>();
+
+        for (int i=0; i<users.size(); i++) {
+
+            usernames.add(users.get(i).getUserName());
+
+        }
+
+        return usernames;
+
+    }
+
     public static ArrayList<String> getUsers(Context context) {
         ArrayList<String> credentials = getCredentials(context);
         ArrayList<String> users = new ArrayList<String>();
@@ -261,6 +292,69 @@ public class Bank {
         return users;
     }
 
+    public static void loadUsers(Context context) {
+
+
+        ArrayList<String> usernames = getUsers(context);
+
+        if (usernames == null) {
+            return;
+        }
+
+        for (int i=0; i<usernames.size(); i++) {
+            String username = usernames.get(i);
+
+
+            FileInputStream fis = null;
+            try {
+                fis = context.openFileInput(username+"-data");
+            } catch (FileNotFoundException e) {
+
+                e.printStackTrace();
+                continue;
+            }
+            InputStreamReader isr = new InputStreamReader(fis);
+            BufferedReader bufferedReader = new BufferedReader(isr);
+            StringBuilder sb = new StringBuilder();
+            String line;
+
+            try {
+
+                while ((line = bufferedReader.readLine()) != null) {
+                    sb.append(line);
+                }
+            }
+
+            catch (IOException e) {
+                continue;
+            }
+
+            String json = sb.toString();
+            System.out.println("found userdata.");
+
+            Gson gson = new Gson();
+            User user = gson.fromJson(json, User.class);
+
+            boolean alreadyIn = false;
+            for (int j=0; j<users.size(); j++) {
+                if (users.get(j).getUserName().equals(username)) {
+                    alreadyIn = true;
+                }
+
+            }
+
+            if (alreadyIn == false) {
+                addUser(user);
+            }
+
+
+
+        }
+        System.out.println(Bank.users);
+
+        return;
+
+    }
 
 
 }

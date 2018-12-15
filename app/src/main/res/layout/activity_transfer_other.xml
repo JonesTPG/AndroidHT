@@ -118,15 +118,15 @@
                 android:textStyle="bold"
                 android:textSize="24dp"/>
 
-
             <EditText
-                android:id="@+id/accountToId"
+                android:id="@+id/accountTo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:maxLines="1"
                 android:inputType="text"
                 android:imeOptions="actionDone"
                 />
+
 
 
 
