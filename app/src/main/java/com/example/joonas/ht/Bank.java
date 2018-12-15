@@ -1,6 +1,7 @@
 package com.example.joonas.ht;
 
 import android.content.Context;
+import android.content.Intent;
 
 import com.google.gson.Gson;
 
@@ -49,6 +50,10 @@ public class Bank {
         Account from = getUser(Current.currentUser).getAccount(fromId);
         Account to = getUser(Current.currentUser).getAccount(toId);
 
+        if ( from.canBeUsed == false || from.getType().equals("säästötili") ) {
+            return -2;
+        }
+
         if ( from.getBalance()+from.getCreditLimit() < amount ) {
             System.out.println("From-tilillä ei ole tarpeeksi rahaa.");
             return -1;
@@ -59,7 +64,7 @@ public class Bank {
             to.deposit(amount);
 
             Date date = new Date();
-            String type = "transfer";
+            String type = "siirto itselle";
             from.addEvent(new Event(date, type, fromId, toId, amount));
             to.addEvent(new Event(date, type, fromId, toId, amount));
 
@@ -70,17 +75,20 @@ public class Bank {
     }
 
     public static int transferMoneyToOther(String toId, String toUser, String fromId, int amount) {
-        //todo: fromId on nykyisen käyttäjän, toId jonkun toisen käyttäjän tili. Molemmat tili-oliot
-        //pitäisi saada haltuun ja tehdä sitten rahojen siirto.
+
         System.out.println("from:" +fromId + " to: " + toId + toUser + amount);
-        //todo: tarkista myös, että tilit eivät ole saman käyttäjän
 
         Account from = getUser(Current.currentUser).getAccount(fromId);
+
+
 
         if (from == null) {
             return -3;
         }
 
+        if (from.canBeUsed == false || from.getType().equals("säästötili")) {
+            return -4;
+        }
         Account to = getUser(toUser).getAccount(toId);
         if (to == null) {
             return -2;
@@ -92,9 +100,17 @@ public class Bank {
         }
         else {
             to.deposit(amount);
+
+            Date date = new Date();
+            String type = "siirto ulkopuolelle";
+            from.addEvent(new Event(date, type, fromId, toId, amount));
+            to.addEvent(new Event(date, type, fromId, toId, amount));
+            return 1;
+
+
         }
 
-        return 1;
+
     }
 
     public static int cardPayment(String cardId, int amount) {
@@ -161,6 +177,40 @@ public class Bank {
 
 
         return fullJson;
+    }
+
+    public static int saveUsers(Context context) {
+
+        for (int i=0; i<users.size(); i++) {
+
+            User user = users.get(i);
+            String fullJson = "";
+            Gson gson = new Gson();
+            fullJson = gson.toJson(user);
+
+            if (fullJson != null) {
+                String filename = user.getUserName()+"-data";
+
+                FileOutputStream outputStream;
+
+                try {
+                    outputStream = context.openFileOutput(filename, Context.MODE_PRIVATE);
+                    outputStream.write(fullJson.getBytes());
+                    outputStream.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    return -1;
+                }
+
+
+                return 1;
+
+            }
+            return -1;
+
+        }
+        return -1;
+
     }
 
     public static String loadUser(String username, Context context) {

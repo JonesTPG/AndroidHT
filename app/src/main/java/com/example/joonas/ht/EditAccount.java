@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
@@ -11,12 +12,15 @@ import org.w3c.dom.Text;
 
 public class EditAccount extends AppCompatActivity {
 
-    RadioGroup accountType;
+
     RadioGroup canBeUsed;
     TextView curAccount;
     TextView infoText;
 
-    String type = "";
+    TextView creditLimitText;
+    EditText creditLimit;
+
+
     boolean BcanBeUsed;
     boolean valueset = false;
 
@@ -32,29 +36,21 @@ public class EditAccount extends AppCompatActivity {
         //this is the intent from the EditAccounts activity
         intent = getIntent();
         accountId = intent.getStringExtra("accountId");
+        User curUser = Bank.getUser(Current.currentUser);
+        Account toBeModified = curUser.getAccount(accountId);
         infoText = findViewById(R.id.infoText);
         curAccount = findViewById(R.id.curAccount);
         curAccount.setText(accountId);
 
-        accountType = findViewById(R.id.accountType);
-        accountType.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                if (checkedId == R.id.savingAccount) {
+        creditLimitText = findViewById(R.id.creditLimitText);
+        creditLimit = findViewById(R.id.creditLimit);
 
-                    type = "säästötili";
-                }
-                else if (checkedId == R.id.creditAccount) {
+        if (toBeModified.getType().equals("käyttötili")) {
+            creditLimitText.setVisibility(View.VISIBLE);
+            creditLimit.setVisibility(View.VISIBLE);
 
-                    type = "käyttötili";
-                }
+        }
 
-                else {
-                    type = "";
-                }
-
-            }
-        });
 
         canBeUsed = findViewById(R.id.canPay);
         canBeUsed.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -79,14 +75,31 @@ public class EditAccount extends AppCompatActivity {
     }
 
     public void saveAccount(View v) {
-        //todo: tilin tyypin muuttaminen ei tällä hetkellä vielä muuta tilin classia oikein
-        //todo: siispä se ei näy korttia lisätessä oikein
-        
+
+
         User curUser = Bank.getUser(Current.currentUser);
         Account toBeModified = curUser.getAccount(accountId);
-        if (!(type.length() == 0) && valueset ) {
-            toBeModified.setType(type);
+
+
+        if ( valueset && toBeModified.getType().equals("säästötili")) {
             toBeModified.setCanBeUsed(BcanBeUsed);
+            startActivity(new Intent(EditAccount.this, UserMain.class));
+            return;
+        }
+
+        else if ( valueset && toBeModified.getType().equals("käyttötili")) {
+            int iCreditLimit;
+            try {
+                iCreditLimit = Integer.parseInt(creditLimit.getText().toString());
+
+            }
+            catch (NumberFormatException e) {
+                infoText.setText("Tarkista luottorajan arvo.");
+                return;
+            }
+
+            toBeModified.setCanBeUsed(BcanBeUsed);
+            toBeModified.setCreditLimit(iCreditLimit);
             startActivity(new Intent(EditAccount.this, UserMain.class));
             return;
         }

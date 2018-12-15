@@ -26,8 +26,9 @@ public class Account {
         cards = new ArrayList<Card>();
     }
 
-
-
+    public void setCreditLimit(int creditLimit) {
+        this.creditLimit = creditLimit;
+    }
 
     public void setCanBeUsed(boolean canBeUsed) {
         this.canBeUsed = canBeUsed;
@@ -91,6 +92,8 @@ public class Account {
     }
 
     public boolean withDraw(int amount) {
+
+
         int newBalance = this.balance-amount;
         if ( newBalance < -this.creditLimit ) {
             return false;

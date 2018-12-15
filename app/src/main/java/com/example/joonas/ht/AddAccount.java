@@ -15,6 +15,9 @@ public class AddAccount extends AppCompatActivity {
     RadioGroup accountType;
     String type = "nothing";
 
+    TextView creditLimitText;
+    EditText creditLimit;
+
     TextView infoText;
 
     @Override
@@ -24,6 +27,9 @@ public class AddAccount extends AppCompatActivity {
 
         infoText = findViewById(R.id.infoText);
 
+        creditLimitText = findViewById(R.id.creditLimitText);
+        creditLimit = findViewById(R.id.creditLimit);
+
         accountId = findViewById(R.id.accountId);
         accountType = findViewById(R.id.accountType);
         accountType.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -32,10 +38,14 @@ public class AddAccount extends AppCompatActivity {
                 if (checkedId == R.id.savingAccount) {
 
                     type = "saving";
+                    creditLimitText.setVisibility(View.INVISIBLE);
+                    creditLimit.setVisibility(View.INVISIBLE);
                 }
                 else if (checkedId == R.id.creditAccount) {
 
                     type = "credit";
+                    creditLimitText.setVisibility(View.VISIBLE);
+                    creditLimit.setVisibility(View.VISIBLE);
                 }
 
             }
@@ -61,7 +71,19 @@ public class AddAccount extends AppCompatActivity {
 
         }
         else if (type.equals("credit")) {
-            curUser.addAccount(new Account(0, accountId.getText().toString(), 0, true,
+
+            int iCreditLimit;
+            try {
+                iCreditLimit = Integer.parseInt(creditLimit.getText().toString());
+
+            }
+            catch (NumberFormatException e) {
+                infoText.setText("Tarkista luottorajan arvo.");
+
+                return;
+            }
+
+            curUser.addAccount(new Account(0, accountId.getText().toString(), iCreditLimit, true,
                                             "käyttötili"));
             System.out.println("success2");
             startActivity(new Intent(AddAccount.this, UserMain.class));

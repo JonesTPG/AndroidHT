@@ -100,6 +100,12 @@ public class TransferOwn extends AppCompatActivity {
             startActivity(new Intent(TransferOwn.this, UserMain.class));
             return;
         }
+
+        else if (success == -2) {
+            infoText.setText("Tili, josta rahaa siirretään ei ole käytössä tai sen tyyppi" +
+                    "on säästötili");
+            return;
+        }
         else {
             infoText.setText("Siirto ei onnistunut.");
             return;

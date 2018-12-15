@@ -111,11 +111,25 @@ public class TransferOther extends AppCompatActivity {
 
         int success = Bank.transferMoneyToOther(selectedTo, selectedUserTo, selectedFrom, iAmount);
 
+        System.out.println("return value is "+ success);
+
+        if (success == -3) {
+            infoText.setText("Tiliä, jolta raha siirretään ei löytynyt.");
+            return;
+        }
+
+        if (success == -4) {
+            infoText.setText("Tili, jolta rahaa siirretään ei ole käytössä tai sen tyyppi on " +
+                    "säästötili");
+            return;
+        }
         if ( success == -2) {
             infoText.setText("Käyttäjällä "+ selectedUserTo + " ei ole tiliä " + selectedTo);
+            return;
         }
         if ( success == -1) {
             infoText.setText("Tilillä ei ole tarpeeksi rahaa.");
+            return;
         }
         if (success == 1) {
             startActivity(new Intent(TransferOther.this, UserMain.class));

@@ -125,29 +125,14 @@ public class UserMain extends AppCompatActivity
         if (id == R.id.action_settings) {
             System.out.println("logout");
 
-            String userJson = Bank.saveUser(Bank.getUser(Current.currentUser));
-            if (userJson != null) {
-                String filename = Bank.getUser(Current.currentUser).getUserName()+"-data";
-
-                FileOutputStream outputStream;
-
-                try {
-                    outputStream = openFileOutput(filename, Context.MODE_PRIVATE);
-                    outputStream.write(userJson.getBytes());
-                    outputStream.close();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                startActivity(new Intent(UserMain.this, LoginActivity.class));
-
-                return true;
-
+            int success = Bank.saveUsers(getApplicationContext());
+            if (success == -1) {
+                System.out.println("error");
             }
             else {
+                startActivity(new Intent(UserMain.this, LoginActivity.class));
 
-                return true;
             }
-
 
         }
 
