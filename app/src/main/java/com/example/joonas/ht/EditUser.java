@@ -71,6 +71,11 @@ public class EditUser extends AppCompatActivity {
 
     public void deleteUser(View v) {
 
+        Bank.removeUser(userId, getApplicationContext());
+        Bank.deleteDataFile(userId, getApplicationContext());
+
+        startActivity(new Intent(EditUser.this, AdminMain.class));
+
         return;
     }
 

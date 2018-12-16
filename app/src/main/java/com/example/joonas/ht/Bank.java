@@ -325,7 +325,42 @@ public class Bank {
         return 1;
 
 
+    }
 
+    public static int deleteCredential(String username, Context context) {
+        ArrayList<String> credentials = getCredentials(context);
+        for (int i=0; i<credentials.size(); i++) {
+            String credential = credentials.get(i);
+            String[] pieces = credential.split(":");
+            String user = pieces[0];
+            if (user.equals(username)) {
+                credentials.remove(i);
+                saveCredentials(credentials, context);
+                System.out.println("removed");
+            }
+
+        }
+
+        return 1;
+    }
+
+    public static boolean deleteDataFile(String username, Context context) {
+        boolean success = context.deleteFile(username+"-data");
+        return success;
+    }
+
+    public static int removeUser(String userId, Context context) {
+        for(int i=0; i<users.size(); i++) {
+
+            if (userId.equals(users.get(i).getUserName())) {
+                users.remove(i);
+                deleteCredential(userId, context);
+                System.out.println("removed");
+                saveUsers(context);
+            }
+
+        }
+        return 1;
     }
 
     public static ArrayList<String> getUserNames() {
