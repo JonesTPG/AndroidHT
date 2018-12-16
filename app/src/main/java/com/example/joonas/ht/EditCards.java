@@ -38,10 +38,7 @@ public class EditCards extends AppCompatActivity {
         recyclerView.setAdapter(adapteri);
     }
 
-    public void editCard(View v) {
-        System.out.println(v.getId());
-        startActivity(new Intent(EditCards.this, UserMain.class));
-    }
+
 
 
 

@@ -39,7 +39,10 @@
         <activity android:name=".TransferOwn" />
         <activity android:name=".CardPayment" />
         <activity android:name=".CardWithdraw" />
-        <activity android:name=".TransferOther"></activity>
+        <activity android:name=".TransferOther" />
+        <activity android:name=".AdminMain" />
+        <activity android:name=".EditUser" />
+        <activity android:name=".AddUser"></activity>
     </application>
 
 </manifest>

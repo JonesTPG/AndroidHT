@@ -27,16 +27,16 @@
        ></android.support.v7.widget.RecyclerView>
 
     <Button
-        android:layout_below="@id/eventList"
-        android:id="@+id/save_events"
-        android:textColor="#fff"
-        android:background="@drawable/buttonstyleithgradient"
-        android:layout_gravity="center_horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Tallenna"
-        android:layout_weight="0.5"
-        android:onClick="saveEvents"
-        />
+    android:layout_below="@id/eventList"
+    android:id="@+id/save_events"
+    android:textColor="#fff"
+    android:background="@drawable/buttonstyleithgradient"
+    android:layout_gravity="center_horizontal"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Tallenna"
+    android:layout_weight="0.5"
+    android:onClick="saveEvents"
+    />
 
 </LinearLayout>

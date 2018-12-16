@@ -18,12 +18,20 @@ public class EditAccounts extends AppCompatActivity {
 
     RecyclerView recyclerView;
 
+    Intent intent;
+    String logintype;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_accounts);
+
+        intent = getIntent();
+        logintype = intent.getStringExtra("login"); //katsotaan onko muokkaaja admin
+        System.out.println(logintype);
+
+
 
 
         //getting the recyclerview from xml

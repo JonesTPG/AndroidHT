@@ -36,6 +36,10 @@ public class Bank {
         users.add(user);
     }
 
+    public static ArrayList<User> getUserArray() {
+        return users;
+    }
+
     public static User getUser(String username) {
         for (int i=0; i<users.size(); i++) {
             if ( users.get(i).userName.equals(username) ) {
@@ -187,6 +191,7 @@ public class Bank {
             String fullJson = "";
             Gson gson = new Gson();
             fullJson = gson.toJson(user);
+            System.out.println(fullJson);
 
             if (fullJson != null) {
                 String filename = user.getUserName()+"-data";
@@ -202,14 +207,11 @@ public class Bank {
                     return -1;
                 }
 
-
-                return 1;
-
             }
-            return -1;
+
 
         }
-        return -1;
+        return 1;
 
     }
 
@@ -310,6 +312,18 @@ public class Bank {
             e.printStackTrace();
             return 0;
         }
+
+
+    }
+
+    public static int addCredential(String newCredential, Context context) {
+        ArrayList<String> credentials = getCredentials(context);
+        credentials.add(newCredential);
+        System.out.println(credentials);
+        saveCredentials(credentials, context);
+        System.out.println("credentials saved");
+        return 1;
+
 
 
     }

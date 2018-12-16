@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EditUser"
+    android:orientation="vertical">
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.5"
+        android:id="@+id/user"/>
+    <Button
+
+        android:id="@+id/editAccounts"
+        android:textColor="#fff"
+        android:background="@drawable/buttonstyleithgradient"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Muokkaa tilejä"
+        android:layout_weight="0.5"
+        android:onClick="editAccounts"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.5"/>
+
+    <Button
+        android:layout_below="@id/editAccounts"
+        android:id="@+id/editCards"
+        android:textColor="#fff"
+        android:background="@drawable/buttonstyleithgradient"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Muokkaa kortteja"
+        android:layout_weight="0.5"
+        android:onClick="editCards"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.5"/>
+    <Button
+        android:layout_below="@id/editCards"
+        android:id="@+id/editInfo"
+        android:textColor="#fff"
+        android:background="@drawable/buttonstyleithgradient"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Muokkaa tietoja"
+        android:layout_weight="0.5"
+        android:onClick="editUserInfo"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.5"/>
+    <Button
+        android:layout_below="@id/editCards"
+        android:id="@+id/deleteUser"
+        android:textColor="#fff"
+        android:background="@drawable/buttonstyleithgradient"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Poista käyttäjä"
+        android:layout_weight="0.5"
+        android:onClick="deleteUser"
+        />
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="6.0"/>
+
+</LinearLayout>

@@ -46,8 +46,16 @@ public class EditProfile extends AppCompatActivity {
         curUser.setPhone(phone);
 
         System.out.println("Profile updated.");
-        startActivity(new Intent(EditProfile.this, UserMain.class));
-        return;
+
+        if (Current.isAdmin == true) {
+            startActivity(new Intent(EditProfile.this, AdminMain.class));
+            return;
+        }
+        else {
+            startActivity(new Intent(EditProfile.this, UserMain.class));
+            return;
+        }
+
     }
 
 }

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ShowEvents"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/infoText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="testi"
+        android:textColor="@color/startblue"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:layout_weight="0.5"/>
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/userList"
+        android:layout_below="@id/infoText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="9.0"
+
+        ></android.support.v7.widget.RecyclerView>
+
+
+
+
+    <LinearLayout
+        android:id="@+id/LinearLayout02"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_alignParentBottom="true">
+        <Button
+            android:id="@+id/addUser"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" android:text="Lisää käyttäjä"
+            android:onClick="addUser">
+        </Button>
+        <Button
+            android:id="@+id/logOut"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Kirjaudu ulos"
+            android:onClick="logOut">
+        </Button>
+    </LinearLayout>
+
+
+
+
+</LinearLayout>

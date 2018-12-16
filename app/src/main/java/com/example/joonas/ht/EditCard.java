@@ -89,8 +89,17 @@ public class EditCard extends AppCompatActivity {
         card.setWithdrawLimit(iWithdrawlimit);
         card.setType(sUsability);
 
-        startActivity(new Intent(EditCard.this, UserMain.class));
+        if(Current.isAdmin == true) {
+            startActivity(new Intent(EditCard.this, AdminMain.class));
+            return;
+        }
 
-        return;
+        else {
+            startActivity(new Intent(EditCard.this, UserMain.class));
+
+            return;
+        }
+
+
     }
 }

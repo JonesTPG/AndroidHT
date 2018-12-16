@@ -83,6 +83,11 @@ public class EditAccount extends AppCompatActivity {
 
         if ( valueset && toBeModified.getType().equals("säästötili")) {
             toBeModified.setCanBeUsed(BcanBeUsed);
+            if (Current.isAdmin == true) {
+                startActivity(new Intent(EditAccount.this, AdminMain.class));
+                return;
+            }
+
             startActivity(new Intent(EditAccount.this, UserMain.class));
             return;
         }
@@ -100,6 +105,11 @@ public class EditAccount extends AppCompatActivity {
 
             toBeModified.setCanBeUsed(BcanBeUsed);
             toBeModified.setCreditLimit(iCreditLimit);
+
+            if (Current.isAdmin == true) {
+                startActivity(new Intent(EditAccount.this, AdminMain.class));
+                return;
+            }
             startActivity(new Intent(EditAccount.this, UserMain.class));
             return;
         }
