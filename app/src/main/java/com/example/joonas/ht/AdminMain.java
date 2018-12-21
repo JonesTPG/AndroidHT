@@ -49,9 +49,10 @@ public class AdminMain extends AppCompatActivity {
     }
 
     public void logOut(View v) {
+        //save the application state before logout
         int success = Bank.saveUsers(getApplicationContext());
         if (success == -1) {
-            System.out.println("error");
+
             startActivity(new Intent(AdminMain.this, LoginActivity.class));
 
         }

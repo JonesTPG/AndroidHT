@@ -463,7 +463,7 @@ public class Bank {
             }
 
             String json = sb.toString();
-            System.out.println("found userdata.");
+
 
             Gson gson = new Gson();
             User user = gson.fromJson(json, User.class);
@@ -483,7 +483,7 @@ public class Bank {
 
 
         }
-        System.out.println(Bank.users);
+
 
         return;
 

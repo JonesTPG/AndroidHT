@@ -123,7 +123,7 @@ public class UserMain extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            System.out.println("logout");
+
 
             int success = Bank.saveUsers(getApplicationContext());
             if (success == -1) {

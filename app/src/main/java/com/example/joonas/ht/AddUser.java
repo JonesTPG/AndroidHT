@@ -48,7 +48,7 @@ public class AddUser extends AppCompatActivity {
             Bank.addCredential(credential, getApplicationContext());
             int success = Bank.saveUsers(getApplicationContext());
 
-            System.out.println(success);
+
             startActivity(new Intent(AddUser.this, AdminMain.class));
 
 

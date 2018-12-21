@@ -111,7 +111,7 @@ public class TransferOther extends AppCompatActivity {
 
         int success = Bank.transferMoneyToOther(selectedTo, selectedUserTo, selectedFrom, iAmount);
 
-        System.out.println("return value is "+ success);
+
 
         if (success == -3) {
             infoText.setText("Tiliä, jolta raha siirretään ei löytynyt.");

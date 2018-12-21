@@ -86,25 +86,25 @@ public class AddCard extends AppCompatActivity {
         }
         catch (NumberFormatException e) {
             infoText.setText("Tarkista nosto- ja maksuraja.");
-            System.out.println("Väärä syöte.");
+
             return;
         }
 
         if ( type.equals("nothing") ) {
             infoText.setText("Määritä kortin toimivuus.");
-            System.out.println("Toimivuutta ei valittu.");
+
             return;
         }
 
         if ( sCardId.length() == 0 || (selectedAccount == null) ) {
             infoText.setText("Tarkista liitettävä tili ja kortin numero.");
-            System.out.println("ei id:tä tai tiliä");
+
             return;
         }
 
         Account toBeAdded = Bank.getUser(Current.currentUser).getAccount(selectedAccount);
         toBeAdded.addCard(new Card(sCardId, selectedAccount, iWithdrawlimit, iAmountlimit, type));
-        System.out.println("Card added.");
+
 
         startActivity(new Intent(AddCard.this, UserMain.class));
         return;

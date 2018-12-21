@@ -18,6 +18,7 @@ public class SaveEvents {
 
     }
 
+    //returns json representation of the events
     public static String getEventsAsJson(ArrayList<Event> events) {
 
         String fullJson = "";

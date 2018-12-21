@@ -65,7 +65,7 @@ public class AddAccount extends AppCompatActivity {
         if (type.equals("saving")) {
             curUser.addAccount(new Account(0, accountId.getText().toString(), 0, false,
                                     "säästötili"));
-            System.out.println("success");
+
             startActivity(new Intent(AddAccount.this, UserMain.class));
             return;
 
@@ -85,14 +85,14 @@ public class AddAccount extends AppCompatActivity {
 
             curUser.addAccount(new Account(0, accountId.getText().toString(), iCreditLimit, true,
                                             "käyttötili"));
-            System.out.println("success2");
+
             startActivity(new Intent(AddAccount.this, UserMain.class));
             return;
 
         }
         else {
             infoText.setText("Valitse tilin tyyppi.");
-            System.out.println("Tilin tyyppiä ei ole valittu.");
+
             return;
         }
     }

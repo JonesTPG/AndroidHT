@@ -28,8 +28,8 @@ public class EditAccounts extends AppCompatActivity {
         setContentView(R.layout.activity_edit_accounts);
 
         intent = getIntent();
-        logintype = intent.getStringExtra("login"); //katsotaan onko muokkaaja admin
-        System.out.println(logintype);
+        logintype = intent.getStringExtra("login"); //check if the user role is admin or not
+
 
 
 
