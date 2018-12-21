@@ -95,6 +95,8 @@ public class TransferOwn extends AppCompatActivity {
             return;
         }
 
+
+        //try the transfer, return value tells if it was successfull or not
         int success = Bank.transferMoney(selectedFrom, selectedTo, iAmount);
         if (success == 1) {
             startActivity(new Intent(TransferOwn.this, UserMain.class));

@@ -109,9 +109,8 @@ public class TransferOther extends AppCompatActivity {
             return;
         }
 
+        //try the transfer, catch the return value and check if the transfer completed
         int success = Bank.transferMoneyToOther(selectedTo, selectedUserTo, selectedFrom, iAmount);
-
-
 
         if (success == -3) {
             infoText.setText("Tiliä, jolta raha siirretään ei löytynyt.");

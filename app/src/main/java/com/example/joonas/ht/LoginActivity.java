@@ -40,7 +40,8 @@ import static android.Manifest.permission.READ_CONTACTS;
  */
 public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
 
-    boolean isNewUser;
+    boolean isNewUser; //keep track if the user is new or not. (if is new the credentials need to
+                       //be saved to the file
 
     /**
      * Id to identity READ_CONTACTS permission request.
@@ -78,7 +79,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             credentials = new ArrayList<String>();
         }
         if (!credentials.contains("admin:admin")) {
-            credentials.add("admin:admin"); //admin-kirjautuminen
+            credentials.add("admin:admin"); //get the admin-credentials in the app no matter what
             Bank.saveCredentials(credentials, getApplicationContext());
         }
 
@@ -87,7 +88,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         populateAutoComplete();
 
-        //credentials.add("joonas:a");
+
 
         isNewUser = false;
 
@@ -368,7 +369,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             if (success) {
                 //Current.currentUser = mEmail;
 
-                if (mEmail.equals("admin")) {
+                if (mEmail.equals("admin")) { //admin login was succesfull, load the AdminMain activity
                     Bank.loadUsers(getApplicationContext());
 
                     startActivity(new Intent(LoginActivity.this, AdminMain.class));
@@ -383,8 +384,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                     finish();
                 }
                 else {
-                    Current.currentUser = mEmail;
-                    Current.isAdmin = false;
+                    Current.currentUser = mEmail; //set the current user
+                    Current.isAdmin = false; //user is not a admin
                     Bank.loadUsers(getApplicationContext());
                     startActivity(new Intent(LoginActivity.this, UserMain.class));
                     finish();

@@ -39,8 +39,10 @@ public class EditAccounts extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        //get the accountlist
         accountList = Bank.getUser(Current.currentUser).getAccounts();
 
+        //pass it to adapter which will show the accounts in a nice view
         AccountAdapter adapteri = new AccountAdapter(this, accountList);
         recyclerView.setAdapter(adapteri);
     }
