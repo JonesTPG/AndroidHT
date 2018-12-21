@@ -14,23 +14,30 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Date;
 
+
+
+/* class that makes all the important features happen. Keeps track of users, modifies them and
+ * also is able to get and save data to the internal file storage. */
+
+
 public class Bank {
 
+
+    /*List of users*/
     static ArrayList<User> users = new ArrayList<User>();
 
 
-
+    /*Singleton principel. (Even though this class pretty much doesn't need to be constructed
+    * as the methods are all static.*/
     private static final Bank ourInstance = new Bank();
     public static Bank getInstance() {
         return ourInstance;
     }
     private Bank() {
 
-        //lisätään testikäyttäjä
-        //User user = new User("joonas");
-        //addUser(user);
-
     }
+
+
 
     public static void addUser(User user) {
         users.add(user);
@@ -39,7 +46,7 @@ public class Bank {
     public static ArrayList<User> getUserArray() {
         return users;
     }
-
+    /*finds and returns a user object by username if one is found.*/
     public static User getUser(String username) {
         for (int i=0; i<users.size(); i++) {
             if ( users.get(i).userName.equals(username) ) {
@@ -49,6 +56,7 @@ public class Bank {
         return null;
     }
 
+    /*moves money between acoounts of user*/
     public static int transferMoney(String fromId, String toId, int amount) {
 
         Account from = getUser(Current.currentUser).getAccount(fromId);
@@ -77,7 +85,7 @@ public class Bank {
         }
 
     }
-
+    /*moves money from one person's account to another user's account*/
     public static int transferMoneyToOther(String toId, String toUser, String fromId, int amount) {
 
         System.out.println("from:" +fromId + " to: " + toId + toUser + amount);
@@ -104,7 +112,7 @@ public class Bank {
         }
         else {
             to.deposit(amount);
-
+            //generate a new event and save to the accounts events
             Date date = new Date();
             String type = "siirto ulkopuolelle";
             from.addEvent(new Event(date, type, fromId, toId, amount));
@@ -117,6 +125,8 @@ public class Bank {
 
     }
 
+
+    /*makes a card payment*/
     public static int cardPayment(String cardId, int amount) {
 
         Card card = getUser(Current.currentUser).getCardById(cardId);
@@ -145,6 +155,7 @@ public class Bank {
 
     }
 
+    /*"withdraws" money from the account the card is attached to*/
     public static int cardWithdraw(String cardId, int amount) {
         Card card = getUser(Current.currentUser).getCardById(cardId);
         Account account =  getUser(Current.currentUser).getAccount(card.getAccountId());
@@ -172,6 +183,7 @@ public class Bank {
 
     }
 
+    /*makes a json object from the User class (Google json)*/
     public static String saveUser(User user) {
 
         String fullJson = "";
@@ -183,6 +195,8 @@ public class Bank {
         return fullJson;
     }
 
+
+    /*saves all the users at once. Used for example in logout operations.*/
     public static int saveUsers(Context context) {
 
         for (int i=0; i<users.size(); i++) {
@@ -215,6 +229,9 @@ public class Bank {
 
     }
 
+    /*loads the user data of a certain user. Notice the context parameter which is needed to
+    make I/O -operations outside of a activity.
+     */
     public static String loadUser(String username, Context context) {
 
         FileInputStream fis = null;
@@ -252,6 +269,8 @@ public class Bank {
         return user.getUserName();
     }
 
+    /*fetches the application credentials from internal storage file.
+     */
     public static ArrayList<String> getCredentials(Context context) {
 
 
@@ -292,6 +311,8 @@ public class Bank {
 
     }
 
+    /*saves the credentials to a file.
+     */
     public static int saveCredentials(ArrayList<String> credentials, Context context) {
 
         String fullJson = "";
@@ -316,6 +337,7 @@ public class Bank {
 
     }
 
+    /*adds a single credential to the file. Makes use of the method above.*/
     public static int addCredential(String newCredential, Context context) {
         ArrayList<String> credentials = getCredentials(context);
         credentials.add(newCredential);
@@ -327,6 +349,8 @@ public class Bank {
 
     }
 
+
+    /*removes a credential from the file. Needed when a user is removed.*/
     public static int deleteCredential(String username, Context context) {
         ArrayList<String> credentials = getCredentials(context);
         for (int i=0; i<credentials.size(); i++) {
@@ -344,10 +368,12 @@ public class Bank {
         return 1;
     }
 
+    /*Removes the data file of a user. Needed when a user is removed.*/
     public static boolean deleteDataFile(String username, Context context) {
         boolean success = context.deleteFile(username+"-data");
         return success;
     }
+
 
     public static int removeUser(String userId, Context context) {
         for(int i=0; i<users.size(); i++) {
@@ -363,6 +389,7 @@ public class Bank {
         return 1;
     }
 
+    /*returns the usernames of all the users, */
     public static ArrayList<String> getUserNames() {
         ArrayList<String> usernames = new ArrayList<String>();
 
@@ -376,6 +403,10 @@ public class Bank {
 
     }
 
+
+    /*returns usernames based on the credential file. Credentials are stored in the file in this format:
+    "username:password"
+     */
     public static ArrayList<String> getUsers(Context context) {
         ArrayList<String> credentials = getCredentials(context);
         ArrayList<String> users = new ArrayList<String>();
@@ -391,6 +422,9 @@ public class Bank {
         return users;
     }
 
+
+
+    /*loads all the users to the bank object.*/
     public static void loadUsers(Context context) {
 
 

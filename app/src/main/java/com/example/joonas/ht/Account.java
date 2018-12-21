@@ -2,7 +2,10 @@ package com.example.joonas.ht;
 
 import java.util.ArrayList;
 
-
+/*a class that defines the account-object. At first i thought of using subclasses for different
+account types, but since the accounts don't differ from each other that much i felt like it wasn't
+needed.
+ */
 public class Account {
 
 
@@ -12,8 +15,8 @@ public class Account {
     protected int creditLimit;
     protected boolean canBeUsed;
     protected String type;
-    ArrayList<Event> events;
-    ArrayList<Card> cards;
+    ArrayList<Event> events; //the events list
+    ArrayList<Card> cards; //the cards list
 
     public Account(int balance, String id, int creditLimit, boolean canBeUsed, String type) {
         this.balance = balance;
@@ -90,7 +93,7 @@ public class Account {
         return cards;
 
     }
-
+    //the withdraw operation. Makes withdraws based on the credit limit of the account.
     public boolean withDraw(int amount) {
 
 

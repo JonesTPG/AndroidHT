@@ -2,7 +2,8 @@ package com.example.joonas.ht;
 
 import java.util.Date;
 
-
+/*class that defines the Event-object. Constructor takes all the neccessary parameters.
+* This object is usually created in the Bank class when some action has been done to accounts*/
 public class Event {
 
 

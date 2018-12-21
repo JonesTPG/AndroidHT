@@ -4,6 +4,8 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+
+/*A class that defines the User object*/
 public class User {
 
     String userName;
@@ -13,7 +15,7 @@ public class User {
 
 
 
-    ArrayList<Account> accounts;
+    ArrayList<Account> accounts;//keeps the accounts in a list
 
 
 
@@ -63,7 +65,7 @@ public class User {
     public ArrayList<Account> getAccounts() {
         return accounts;
     }
-
+    /*returns the names of accounts. Used in the account modification recyclerview for example*/
     public ArrayList<String> getAccountNames() {
         ArrayList<String> accountNames = new ArrayList<String>();
 
@@ -73,7 +75,7 @@ public class User {
 
         return accountNames;
     }
-
+    /*returns Credit accounts*/
     public ArrayList<String> getCreditAccounts() {
         ArrayList<String> taulukko = new ArrayList<String>();
         for (int i=0; i<accounts.size(); i++) {
@@ -84,7 +86,7 @@ public class User {
         return taulukko;
     }
 
-
+    /*returns a Account object by the ID if one is found*/
     public Account getAccount(String ID) {
         for (int i=0; i<accounts.size(); i++) {
             if ( accounts.get(i).id.equals(ID) ) {
@@ -94,7 +96,7 @@ public class User {
 
         return null;
     }
-
+    /*returns a specific card of the user, if one is found*/
     public Card getCardById(String cardId) {
         for (int i=0; i<accounts.size(); i++) {
             Card card = accounts.get(i).getCard(cardId);
@@ -110,7 +112,7 @@ public class User {
 
 
 
-
+    /*helper method for debugging*/
     public void printInfo() {
         System.out.println(this.userName);
         System.out.println(this.email);

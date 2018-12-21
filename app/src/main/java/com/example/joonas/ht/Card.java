@@ -1,5 +1,7 @@
 package com.example.joonas.ht;
 
+
+/*defines the Card object. Nothing special here.*/
 public class Card {
 
     private String cardId;
